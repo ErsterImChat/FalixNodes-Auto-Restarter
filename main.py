@@ -12,7 +12,7 @@ MailAdress = input("Enter your Falix Email")
 Password = input("Enter your FalixPanel Password. Its Private. I dont get it!")
 FalixNodesServerURL = input("Enter the URL to your FalixNodes Server-Panel.")
 JavaVersion = input("Enter your Java Version. Java Version can be: java8, java11 or default")
-CheckServerIntervall = input("Determine how often the script should check whether the server is still running.About 1-5 minutes is recommended.(In seconds)")
+CheckServerIntervall = (30)
 
 
 # Initializing Webdriver
