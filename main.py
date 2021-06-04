@@ -1,6 +1,5 @@
 from selenium import webdriver
 import time
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,7 +16,7 @@ CheckServerIntervall = (30)
 
 # Initializing Webdriver
 options = webdriver.ChromeOptions()
-driver = webdriver.Chrome(options=options, executable_path=ChromeDriverManager().install())
+driver = webdriver.Chrome()
 driver.get(FalixNodesServerURL)
 
 time.sleep(2)
@@ -40,21 +39,20 @@ LoginButton.click()
 print ("Solve Chaptcha")
 input("Press Enter to after you solved the Chaptcha...")
 
-driver.get(FalixNodesServerURL)
-
 time.sleep(1)
 print("Script is starting")
 
 wait = WebDriverWait(driver, 10)
 
 
-StartButton = driver.find_element_by_xpath("/html/body/div[3]/div[2]/div[3]/section/div[1]/div[1]/div[2]/button[1]")
-ConsoleTextField = driver.find_element_by_xpath("/html/body/div[3]/div[2]/div[3]/section/div[1]/div[2]/div[2]/div[3]/div[2]/input")
 
 
 while 3 < 4:
-    time.sleep(5)
-
+    driver.get(FalixNodesServerURL)
+    time.sleep(10)
+    
+    StartButton = driver.find_element_by_xpath("/html/body/div[3]/div[2]/div[3]/section/div[1]/div[1]/div[2]/button[1]")
+    ConsoleTextField = driver.find_element_by_xpath("/html/body/div[3]/div[2]/div[3]/section/div[1]/div[2]/div[2]/div[3]/div[2]/input")
     StatusText = wait.until(EC.visibility_of_element_located((By.XPATH, "//p[contains(@class, 'sc-')]"))).text
 
     if StatusText == " RUNNING":
@@ -62,7 +60,6 @@ while 3 < 4:
         print("Server is running")
 
         time.sleep(CheckServerIntervall)
-        driver.refresh()
 
     if StatusText == " OFFLINE":
         print("Server isn´t running it is getting restarted now")
