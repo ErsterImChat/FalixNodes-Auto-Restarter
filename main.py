@@ -62,6 +62,7 @@ while 3 < 4:
         print("Server is running")
 
         time.sleep(CheckServerIntervall)
+        driver.refresh()
 
     if StatusText == " OFFLINE":
         print("Server isn´t running it is getting restarted now")
