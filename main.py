@@ -54,8 +54,6 @@ MailField.send_keys(MailAdress)
 PassField.send_keys(Password)
 LoginButton.click()
 
-#print ("Solve Chaptcha")
-#input("Press Enter to after you solved the Chaptcha...")
 
 time.sleep(2)
 
