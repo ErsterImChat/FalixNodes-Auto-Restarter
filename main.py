@@ -41,7 +41,6 @@ driver.get(FalixNodesServerURL)
 
 time.sleep(10)
 
-driver.get_screenshot_as_file("screenshot.png")
 
 CookiesButton = driver.find_element_by_xpath("/html/body/cloudflare-app/cf-dialog/cf-dialog-content/cf-dialog-content-text/form/input")
 CookiesButton.click()
