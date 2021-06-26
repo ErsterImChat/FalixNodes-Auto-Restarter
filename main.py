@@ -108,5 +108,5 @@ while 3 < 4:
         print("Server is starting")
         time.sleep(30)
         
-     else:
+    else:
         print("An error has occurred. Please restart the script")
