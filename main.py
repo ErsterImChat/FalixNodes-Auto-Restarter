@@ -65,11 +65,16 @@ print("Script is starting")
 wait = WebDriverWait(driver, 10)
 
 
-StartButton = driver.find_element_by_css_selector("#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-1.kouwIw > div.sc-1ikkfm-0.gpqVmG > button.sc-1qu1gou-0.cDMUVV.sc-1ikkfm-1.otvZv")
-ConsoleTextField = driver.find_element_by_css_selector("#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-6.hiqQuj > div.itaf37-2.imOGfg > div.itaf37-4.bKVHVd > div.itaf37-6.eJbAav > input")
-
 
 while 3 < 4:
+    
+    driver.refresh()
+    time.sleep(5)
+    StartButton = driver.find_element_by_css_selector("#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-1.kouwIw > div.sc-1ikkfm-0.gpqVmG > button.sc-1qu1gou-0.cDMUVV.sc-1ikkfm-1.otvZv")
+    ConsoleTextField = driver.find_element_by_css_selector("#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-6.hiqQuj > div.itaf37-2.imOGfg > div.itaf37-4.bKVHVd > div.itaf37-6.eJbAav > input")
+    
+    driver.refresh()
+    
     time.sleep(5)
 
     StatusText = wait.until(EC.visibility_of_element_located((By.XPATH, "//p[contains(@class, 'sc-')]"))).text
@@ -102,3 +107,6 @@ while 3 < 4:
     if StatusText == " STARTING":
         print("Server is starting")
         time.sleep(30)
+        
+     else:
+        print("An error has occurred. Please restart the script")
