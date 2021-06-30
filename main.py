@@ -107,6 +107,4 @@ while 3 < 4:
     if StatusText == " STARTING":
         print("Server is starting")
         time.sleep(30)
-        
-    else:
-        print("An error has occurred. Please restart the script")
+     
