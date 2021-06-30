@@ -12,7 +12,7 @@ MailAdress = input("Enter your Falix Email")
 Password = input("Enter your FalixPanel Password. Its Private. I dont get it!")
 FalixNodesServerURL = input("Enter the URL to your FalixNodes Server-Panel.")
 JavaVersion = input("Enter your Java Version. Java Version can be: java8, java11 or default")
-CheckServerIntervall = (60)
+CheckServerIntervall = int(input("Enter how often the script should check if the Server is still running. (In seconds)"))
 
 
 # Initializing Webdriver and making Chrome Headless. The other Options are used to bypass Cloudflare´s Bot Detection
