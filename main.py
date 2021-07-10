@@ -11,7 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 MailAdress = input("Enter your Falix Email: ")
 Password = input("Enter your FalixPanel Password. Its Private. I dont get it: ")
 FalixNodesServerURL = input("Enter the URL to your FalixNodes Server-Panel: ")
-JavaVersion = input("Enter your Java Version. Java Version can be: java8, java11 or default: ")
+#JavaVersion = input("Enter your Java Version. Java Version can be: java8, java11 or default: ")
 CheckServerIntervall = int(input("Enter how often the script should check if the Server is still running. (In seconds): "))
 
 
@@ -90,7 +90,7 @@ while 3 < 4:
         time.sleep(1)
         StartButton.click()
         time.sleep(11)
-        ConsoleTextField.send_keys(JavaVersion)
+       #ConsoleTextField.send_keys(JavaVersion)
         ConsoleTextField.send_keys(Keys.ENTER)
 
     if StatusText == " STOPPING":
