@@ -31,6 +31,9 @@ options.add_argument('--disable-dev-shm-usage')
 options.add_argument('--no-sandbox')
 options.add_argument('--ignore-certificate-errors')
 options.add_argument("--allow-running-insecure-content")
+options.add_experimental_option("excludeSwitches", ["enable-automation"])
+options.add_experimental_option('useAutomationExtension', False)
+options.add_argument("--disable-blink-features=AutomationControlled")
 driver = webdriver.Chrome(options=options, executable_path=ChromeDriverManager().install())
 time.sleep(2)
 
@@ -41,13 +44,20 @@ driver.get(FalixNodesServerURL)
 
 time.sleep(10)
 
+wait = WebDriverWait(driver, 10)
 
-CookiesButton = driver.find_element_by_xpath("/html/body/cloudflare-app/cf-dialog/cf-dialog-content/cf-dialog-content-text/form/input")
+CookiesButton = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[3]/div/div/div/div[3]/div[2]/div[2]")))
 CookiesButton.click()
+
+
+CookiesButton2 = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/cloudflare-app/cf-dialog/cf-dialog-content/cf-dialog-content-text/form/input")))
+CookiesButton2.click()
+
+time.sleep(4)
 
 MailField = driver.find_element_by_name("username")
 PassField = driver.find_element_by_name("password")
-LoginButton = driver.find_element_by_xpath("/html/body/div[1]/div[2]/div/div/form/div/div[2]/div[3]/button")
+LoginButton = wait.until(EC.visibility_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div/div/form/div/div[2]/div[3]/button")))
 
 
 MailField.send_keys(MailAdress)
@@ -62,21 +72,16 @@ driver.get(FalixNodesServerURL)
 time.sleep(5)
 print("Script is starting")
 
-wait = WebDriverWait(driver, 10)
 
 
 
 while 3 < 4:
     
     driver.refresh()
-    time.sleep(5)
-    StartButton = driver.find_element_by_css_selector("#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-1.kouwIw > div.sc-1ikkfm-0.gpqVmG > button.sc-1qu1gou-0.cDMUVV.sc-1ikkfm-1.otvZv")
-    ConsoleTextField = driver.find_element_by_css_selector("#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-6.hiqQuj > div.itaf37-2.imOGfg > div.itaf37-4.bKVHVd > div.itaf37-6.eJbAav > input")
-    
-    driver.refresh()
-    
-    time.sleep(5)
-
+    time.sleep(10)
+    driver.save_screenshot('screenie.png')
+    StartButton = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-1.kouwIw > div.sc-1ikkfm-0.gpqVmG > button.sc-1qu1gou-0.cDMUVV.sc-1ikkfm-1.otvZv")))
+    ConsoleTextField = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "#app > div.sc-2l91w7-0.kBdQEn > div.sc-1p0gm8n-0.cKsaPm > section > div.x3r2dw-0.kbxq2g-0.kHheKg.jlQaqB.sc-1j2y518-0.fWkOrl.fade-appear-done.fade-enter-done > div.sc-1j2y518-6.hiqQuj > div.itaf37-2.imOGfg > div.itaf37-4.bKVHVd > div.itaf37-6.eJbAav > input")))
     StatusText = wait.until(EC.visibility_of_element_located((By.XPATH, "//p[contains(@class, 'sc-')]"))).text
 
     if StatusText == " RUNNING":
@@ -90,7 +95,7 @@ while 3 < 4:
         time.sleep(1)
         StartButton.click()
         time.sleep(11)
-       #ConsoleTextField.send_keys(JavaVersion)
+        #ConsoleTextField.send_keys(JavaVersion)
         ConsoleTextField.send_keys(Keys.ENTER)
 
     if StatusText == " STOPPING":
@@ -107,4 +112,3 @@ while 3 < 4:
     if StatusText == " STARTING":
         print("Server is starting")
         time.sleep(30)
-     
