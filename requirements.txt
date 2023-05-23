@@ -4,6 +4,6 @@ colorama==0.4.4
 configparser==5.0.2
 crayons==0.4.0
 idna==2.10
-requests==2.25.1
+requests==2.31.0
 selenium==3.141.0
 webdriver-manager==3.4.2
